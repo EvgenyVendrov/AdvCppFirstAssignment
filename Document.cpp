@@ -69,7 +69,7 @@ void Document::push_text_after(const int num_of_lines_added, string &text)
         while (text.find("\r") != string::npos) //parsing string to get line by line
         {
             string to_push = text.substr(0, text.find("\r") + 1);
-            _curr_line = _output_text.emplace(get_output_iter_begin() + how_much_moved, to_push);
+            _curr_line = _output_text.insert(get_output_iter_begin() + how_much_moved, to_push);
             how_much_moved++;
             text.replace(0, to_push.size(), "");
         }
@@ -83,7 +83,7 @@ void Document::push_text_after(const int num_of_lines_added, string &text)
         while (text.find("\r") != string::npos) //parsing string to get line by line
         {
             string to_push = text.substr(0, text.find("\r") + 1);
-            _curr_line = _output_text.emplace(_curr_line + 1, to_push);
+            _curr_line = _output_text.insert(_curr_line + 1, to_push);
             text.replace(0, to_push.size(), "");
         }
     }
@@ -95,7 +95,7 @@ void Document::push_text_before(const int line_num, string &text)
     while (text.find("\r") != string::npos) //parsing string to get line by line
     {
         string to_push = text.substr(0, text.find("\r") + 1);
-        _curr_line = _output_text.emplace(_curr_line - how_much_moved, to_push);
+        _curr_line = _output_text.insert(_curr_line - how_much_moved, to_push);
         text.replace(0, to_push.size(), "");
         how_much_moved--;
     }
@@ -109,7 +109,7 @@ void Document::push_text_instead(const int line_num, string &text)
     while (text.find("\r") != string::npos) //parsing string to get line by line
     {
         string to_push = text.substr(0, text.find("\r") + 1);
-        _curr_line = _output_text.emplace(_curr_line - how_much_moved, to_push);
+        _curr_line = _output_text.insert(_curr_line - how_much_moved, to_push);
         text.replace(0, to_push.size(), "");
         how_much_moved--;
     }
